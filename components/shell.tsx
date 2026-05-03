@@ -36,7 +36,7 @@ export function AppShell({ children, profile }: { children: React.ReactNode; pro
     <div className="min-h-screen bg-brand-background text-white flex">
       {/* Sidebar Desktop */}
       <aside className="hidden lg:flex w-64 flex-col border-r border-white/5 bg-brand-background/50 backdrop-blur-xl sticky top-0 h-screen">
-        <div className="p-6">
+        <Link href="/dashboard" className="p-6 hover:opacity-80 transition-opacity">
           <div className="flex items-center gap-3">
             <LASquare />
             <div>
@@ -44,7 +44,7 @@ export function AppShell({ children, profile }: { children: React.ReactNode; pro
               <p className="text-[10px] text-brand-secondary font-bold uppercase tracking-widest mt-1">Área de formação</p>
             </div>
           </div>
-        </div>
+        </Link>
 
         <nav className="flex-1 px-4 py-4 space-y-2">
           {navItems.map((item) => {
@@ -100,10 +100,10 @@ export function AppShell({ children, profile }: { children: React.ReactNode; pro
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header Mobile & Desktop Top Bar */}
         <header className="lg:hidden sticky top-0 z-40 border-b border-white/5 bg-brand-background/80 backdrop-blur-xl p-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+          <Link href="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
             <LASquare className="size-8" />
             <p className="text-sm font-bold">Loading Academy</p>
-          </div>
+          </Link>
           <div className="flex items-center gap-2">
             {canAdmin && (
               <Link href="/admin" className="p-2 text-brand-primary hover:bg-white/5 rounded-lg transition-colors">
@@ -137,7 +137,9 @@ export function AppShell({ children, profile }: { children: React.ReactNode; pro
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden bg-brand-background/95 p-6 flex flex-col gap-6">
           <div className="flex justify-between items-center">
-            <LASquare />
+            <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
+              <LASquare />
+            </Link>
             <button onClick={() => setIsMobileMenuOpen(false)} className="p-2"><X /></button>
           </div>
           <nav className="space-y-4">

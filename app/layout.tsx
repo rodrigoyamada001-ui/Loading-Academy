@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     capable: true,
     title: "Loading Academy",
     statusBarStyle: "black-translucent"
+  },
+  icons: {
+    apple: "/icon.svg",
+    shortcut: "/icon.svg"
   }
 };
 

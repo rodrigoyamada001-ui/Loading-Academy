@@ -17,16 +17,16 @@ export function Hero() {
           </div>
           
           <h1 className="text-6xl sm:text-7xl font-display leading-[0.9] text-white mb-6">
-            Líderes preparados com <br />
-            <span className="text-brand-primary">profundidade e excelência</span>
+            Área de <br />
+            <span className="text-brand-primary">Formação</span>
           </h1>
           
-          <h2 className="text-xl sm:text-2xl font-medium text-white/90 mb-6">
-            Formação ministerial completa em um ambiente premium.
+          <h2 className="text-xl sm:text-2xl font-medium text-white/90 mb-6 italic opacity-80">
+            Preparing the next generation
           </h2>
           
           <p className="text-lg text-brand-muted leading-relaxed mb-10 max-w-lg">
-            Um ambiente completo para trilhas de formação, conteúdo em vídeo e PDF, acompanhamento de progresso e governo pastoral.
+            Cresça em conhecimento, fé e propósito através do conhecimento da palavra de Deus.
           </p>
           
           <div className="flex flex-wrap gap-4">

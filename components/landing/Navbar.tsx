@@ -16,11 +16,6 @@ export function Navbar({ profile }: { profile: Profile | null }) {
           </div>
         </div>
         
-        <div className="hidden items-center gap-8 md:flex">
-          <Link href="/" className="text-sm text-brand-muted hover:text-white transition-colors">Início</Link>
-          <Link href="/courses" className="text-sm text-brand-muted hover:text-white transition-colors">Cursos</Link>
-        </div>
-
         <div className="flex items-center gap-3">
           <Link href="/login" className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white hover:border-brand-primary/60 hover:text-brand-primary transition-colors">
             Entrar
@@ -28,11 +23,6 @@ export function Navbar({ profile }: { profile: Profile | null }) {
           <Link href="/register" className="rounded-full bg-brand-primary px-5 py-2 text-sm font-semibold text-white hover:bg-brand-primary/90 transition-all shadow-glow">
             Cadastrar
           </Link>
-          {profile && (
-            <Link href="/dashboard" className="hidden rounded-full border border-brand-primary/40 bg-brand-primary/10 px-5 py-2 text-sm font-semibold text-white hover:bg-brand-primary/20 transition-all md:inline-flex">
-              Dashboard
-            </Link>
-          )}
         </div>
       </div>
     </nav>

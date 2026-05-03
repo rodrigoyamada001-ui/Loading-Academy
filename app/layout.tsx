@@ -1,20 +1,21 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
-import { Cormorant_Garamond, Sora } from "next/font/google";
 
-const sora = Sora({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sora"
+  variable: "--font-inter",
 });
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-cormorant"
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-cormorant",
 });
 
 export const metadata: Metadata = {
-  title: "Loading Academy",
-  description: "Preparing the next generation",
+  title: "Loading Academy | Formação Ministerial Digital",
+  description: "Preparando líderes para a próxima geração.",
   manifest: "/manifest.webmanifest",
   applicationName: "Loading Academy",
   appleWebApp: {
@@ -33,8 +34,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR">
-      <body className={`${sora.variable} ${cormorant.variable} font-sans antialiased`}>{children}</body>
+    <html lang="pt-BR" className={`${inter.variable} ${cormorant.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }

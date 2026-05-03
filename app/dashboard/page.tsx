@@ -1,100 +1,116 @@
-import { Megaphone, ShieldCheck } from "lucide-react";
+import { ArrowRight, BookOpen, Route, Clock, Shield, Lock } from "lucide-react";
 import { AppShell } from "@/components/shell";
-import { CourseCard } from "@/components/course-card";
-import { LinkButton } from "@/components/ui/button";
 import { requireUser } from "@/lib/auth";
 import { getAccessiblePublishedCourses } from "@/lib/courses";
-import { createClient } from "@/lib/supabase/server";
-import type { Announcement } from "@/lib/types";
+import { LinkButton } from "@/components/ui/button";
 
 export default async function DashboardPage() {
   const profile = await requireUser();
-  const supabase = await createClient();
   const approved = profile.status === "approved";
-
-  const { data: announcements } = await supabase
-    .from("announcements")
-    .select("*")
-    .eq("is_active", true)
-    .order("created_at", { ascending: false })
-    .limit(3);
-
-  const courses = approved ? (await getAccessiblePublishedCourses(profile.id)).slice(0, 3) : [];
+  const courses = approved ? await getAccessiblePublishedCourses(profile.id) : [];
 
   return (
     <AppShell profile={profile}>
-      <section className="grid gap-6">
-        <div className="rounded-2xl border border-premium-line/70 bg-gradient-to-br from-premium-base/70 to-premium-surface/60 p-6 shadow-halo">
-          <p className="text-sm text-slate-300">Area do membro</p>
-          <h1 className="mt-2 font-display text-4xl font-semibold">Ola, {profile.full_name ?? "membro"}.</h1>
-          {approved ? (
-            <p className="mt-3 max-w-2xl text-slate-200">Continue sua jornada de formacao e acompanhe os cursos liberados pela lideranca.</p>
-          ) : (
-            <p className="mt-3 max-w-2xl rounded-md border border-premium-gold/40 bg-premium-gold/15 p-4 text-amber-100">
-              Seu cadastro esta aguardando aprovacao da lideranca.
+      <div className="space-y-8">
+        {/* Hero Section Dashboard */}
+        <section className="relative flex flex-col lg:flex-row items-center justify-between gap-12 py-10">
+          <div className="max-w-xl text-center lg:text-left z-10">
+            <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
+              Bem-vindo(a) à <br />
+              <span className="text-brand-primary">Loading Academy</span>
+            </h1>
+            <p className="text-brand-muted text-lg leading-relaxed mb-8">
+              Este é o seu ambiente de formação. Seus cursos aparecerão aqui quando forem liberados pela liderança.
             </p>
-          )}
-        </div>
-
-        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <section>
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-xl font-semibold">Cursos liberados</h2>
-              <LinkButton href="/courses" variant="secondary">Ver todos</LinkButton>
+            <div className="flex justify-center lg:justify-start">
+              <LinkButton href="/courses" variant="primary" className="rounded-xl px-8 py-6 h-auto shadow-glow flex items-center gap-3">
+                <Lock className="size-4" /> Entrar na plataforma <ArrowRight className="size-4" />
+              </LinkButton>
             </div>
-            {approved && courses.length ? (
-              <div className="grid gap-4 md:grid-cols-3">
-                {courses.map((course) => (
-                  <CourseCard key={course.id} course={course} href={`/courses/${course.id}`} />
-                ))}
-              </div>
-            ) : approved ? (
-              <EmptyCourses />
-            ) : null}
-          </section>
-
-          <section className="rounded-2xl border border-premium-line/70 bg-premium-base/50 p-5">
-            <div className="mb-4 flex items-center gap-2">
-              <Megaphone className="size-5 text-premium-cyan" />
-              <h2 className="text-xl font-semibold">Avisos da igreja</h2>
-            </div>
-            {announcements?.length ? (
-              <div className="grid gap-3">
-                {(announcements as Announcement[]).map((item) => (
-                  <article key={item.id} className="rounded-xl border border-premium-line/70 bg-premium-base/45 p-4">
-                    <h3 className="font-semibold">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">{item.body}</p>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm leading-6 text-slate-400">Nenhum aviso publicado no momento.</p>
-            )}
-          </section>
-        </div>
-
-        {(profile.role === "leader" || profile.role === "admin") ? (
-          <div className="flex items-center justify-between rounded-2xl border border-premium-cyan/35 bg-premium-base/55 p-5">
-            <div>
-              <h2 className="font-semibold">Acesso de lideranca</h2>
-              <p className="mt-1 text-sm text-slate-200">Gerencie membros, cursos, modulos, aulas e avisos.</p>
-            </div>
-            <LinkButton href="/admin" variant="accent">
-              <ShieldCheck className="size-4" />
-              Painel Administrativo
-            </LinkButton>
           </div>
-        ) : null}
-      </section>
-    </AppShell>
-  );
-}
 
-function EmptyCourses() {
-  return (
-    <div className="rounded-lg border border-white/10 bg-white/6 p-8 text-center">
-      <p className="text-lg font-semibold">Nenhum curso disponível no momento.</p>
-      <p className="mt-2 text-slate-400">Novos conteúdos serão liberados em breve.</p>
-    </div>
+          {/* Pedestal with LA Logo */}
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
+            {/* Pedestal Base */}
+            <div className="absolute bottom-0 w-48 h-8 bg-gradient-to-t from-brand-surface to-brand-card rounded-[50%] border-b-4 border-black/50 shadow-halo" />
+            <div className="absolute bottom-4 w-40 h-6 bg-gradient-to-t from-brand-surface to-brand-card rounded-[50%] border-b-4 border-black/50" />
+            
+            {/* Glow */}
+            <div className="absolute bottom-10 size-32 bg-brand-primary/40 blur-[50px] rounded-full animate-pulse" />
+            
+            {/* 3D LA Card */}
+            <div className="relative size-32 sm:size-40 bg-gradient-to-br from-brand-card to-brand-background border border-white/10 rounded-2xl flex items-center justify-center shadow-halo transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+              <span className="text-4xl sm:text-5xl font-bold text-white tracking-tighter">LA</span>
+              <div className="absolute inset-0 bg-mesh opacity-30 rounded-2xl" />
+            </div>
+          </div>
+        </section>
+
+        {/* Grid Section */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* My Courses Card */}
+          <div className="bg-brand-card/40 border border-white/5 rounded-3xl p-8 shadow-halo group hover:border-brand-primary/30 transition-all">
+            <div className="flex items-center gap-3 mb-8">
+              <BookOpen className="size-5 text-brand-secondary" />
+              <h2 className="text-xl font-bold text-white">Meus cursos</h2>
+            </div>
+            
+            <div className="flex flex-col items-center justify-center py-10 text-center">
+              <div className="size-20 rounded-full bg-brand-secondary/10 border border-brand-secondary/20 flex items-center justify-center mb-6">
+                <BookOpen className="size-8 text-brand-muted" />
+              </div>
+              <p className="text-sm font-bold text-white mb-1">Nenhum curso disponível no momento</p>
+              <p className="text-xs text-brand-muted">A liderança adicionará novos conteúdos em breve.</p>
+            </div>
+          </div>
+
+          {/* Training Tracks Card */}
+          <div className="bg-brand-card/40 border border-white/5 rounded-3xl p-8 shadow-halo group hover:border-brand-primary/30 transition-all">
+            <div className="flex items-center gap-3 mb-8">
+              <Route className="size-5 text-brand-secondary" />
+              <h2 className="text-xl font-bold text-white">Trilhas de formação</h2>
+            </div>
+            
+            <div className="flex flex-col items-center justify-center py-10 text-center">
+              <div className="size-20 rounded-full bg-brand-secondary/10 border border-brand-secondary/20 flex items-center justify-center mb-6">
+                <Route className="size-8 text-brand-muted" />
+              </div>
+              <p className="text-sm font-bold text-white mb-1">Trilhas de formação serão organizadas aqui</p>
+              <p className="text-xs text-brand-muted">Quando os módulos forem cadastrados, você poderá acompanhar sua jornada.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Continue Studying Section */}
+        <div className="bg-brand-card/40 border border-white/5 rounded-3xl p-8 shadow-halo">
+          <div className="flex items-center gap-3 mb-8">
+            <Clock className="size-5 text-brand-secondary" />
+            <h2 className="text-xl font-bold text-white">Continuar estudando</h2>
+          </div>
+          
+          <div className="flex flex-col items-center justify-center py-12 text-center">
+            <div className="size-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6">
+              <Clock className="size-6 text-brand-muted" />
+            </div>
+            <p className="text-sm font-bold text-white mb-1">Nenhum conteúdo iniciado ainda</p>
+            <p className="text-xs text-brand-muted">Após acessar um curso, seu progresso aparecerá aqui.</p>
+          </div>
+        </div>
+
+        {/* Exclusive Content Banner */}
+        <div className="bg-gradient-to-r from-brand-surface to-brand-card border border-white/5 rounded-3xl p-8 flex items-center justify-between relative overflow-hidden group">
+          <div className="flex items-center gap-6 relative z-10">
+            <div className="size-14 rounded-2xl bg-brand-primary/20 border border-brand-primary/30 flex items-center justify-center">
+              <Shield className="size-6 text-brand-primary" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-white mb-1">Conteúdo exclusivo para membros</h3>
+              <p className="text-xs text-brand-muted">Todos os materiais são preparados com excelência para o seu crescimento espiritual e ministerial.</p>
+            </div>
+          </div>
+          <Lock className="size-12 text-white/5 absolute right-8 group-hover:text-white/10 transition-colors" />
+        </div>
+      </div>
+    </AppShell>
   );
 }

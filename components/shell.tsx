@@ -111,9 +111,6 @@ export function AppShell({ children, profile }: { children: React.ReactNode; pro
 
         {/* Desktop Top Bar (Matches Image) */}
         <header className="hidden lg:flex sticky top-0 z-30 px-8 py-4 items-center justify-end gap-4 bg-brand-background/50 backdrop-blur-md">
-          <Link href="/dashboard" className="px-6 py-2 rounded-lg bg-brand-primary text-sm font-bold shadow-glow flex items-center gap-2">
-            <Home className="size-4" /> Entrar
-          </Link>
           {canAdmin && (
             <Link href="/admin" className="flex items-center gap-2 text-brand-muted hover:text-white transition-colors text-sm font-medium">
               <Shield className="size-4" /> Acesso administrativo

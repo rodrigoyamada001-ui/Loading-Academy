@@ -104,9 +104,16 @@ export function AppShell({ children, profile }: { children: React.ReactNode; pro
             <LASquare className="size-8" />
             <p className="text-sm font-bold">Loading Academy</p>
           </div>
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-brand-muted">
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </button>
+          <div className="flex items-center gap-2">
+            {canAdmin && (
+              <Link href="/admin" className="p-2 text-brand-primary hover:bg-white/5 rounded-lg transition-colors">
+                <Shield className="size-5" />
+              </Link>
+            )}
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-brand-muted hover:bg-white/5 rounded-lg transition-colors">
+              {isMobileMenuOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+            </button>
+          </div>
         </header>
 
         {/* Desktop Top Bar (Matches Image) */}
@@ -140,6 +147,16 @@ export function AppShell({ children, profile }: { children: React.ReactNode; pro
                 {item.label}
               </Link>
             ))}
+            {canAdmin && (
+              <Link 
+                href="/admin" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="flex items-center gap-4 text-xl font-bold pt-4 mt-4 border-t border-white/10 text-brand-primary"
+              >
+                <Shield className="size-6" />
+                Administração
+              </Link>
+            )}
           </nav>
           <div className="mt-auto pt-6 border-t border-white/10">
             <form action={signOutAction}>

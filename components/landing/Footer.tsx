@@ -1,4 +1,3 @@
-import { LASquare } from "./Logo";
 import Link from "next/link";
 
 export function Footer() {
@@ -22,12 +21,12 @@ export function Footer() {
           <div className="flex flex-col md:items-end">
             <h4 className="text-xs font-bold text-white uppercase tracking-widest mb-6">Siga-nos</h4>
             <div className="flex gap-4">
-              <div className="size-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:border-brand-primary/50 transition-all cursor-pointer">
+              <Link href="https://instagram.com" target="_blank" rel="noreferrer" className="size-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:border-brand-primary/50 transition-all">
                 <span className="text-xs text-brand-muted">IG</span>
-              </div>
-              <div className="size-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:border-brand-primary/50 transition-all cursor-pointer">
+              </Link>
+              <Link href="https://youtube.com" target="_blank" rel="noreferrer" className="size-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:border-brand-primary/50 transition-all">
                 <span className="text-xs text-brand-muted">YT</span>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -35,8 +34,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-brand-muted border-t border-white/5 pt-8">
           <p>© 2025 Loading Academy. Todos os direitos reservados.</p>
           <div className="flex gap-6">
-            <Link href="#" className="hover:text-white">Termos</Link>
-            <Link href="#" className="hover:text-white">Privacidade</Link>
+            <Link href="/register" className="hover:text-white">Termos</Link>
+            <Link href="/register" className="hover:text-white">Privacidade</Link>
           </div>
         </div>
       </div>

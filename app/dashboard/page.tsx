@@ -22,11 +22,6 @@ export default async function DashboardPage() {
             <p className="text-brand-muted text-lg leading-relaxed mb-8">
               Este é o seu ambiente de formação. Seus cursos aparecerão aqui quando forem liberados pela liderança.
             </p>
-            <div className="flex justify-center lg:justify-start">
-              <LinkButton href="/courses" variant="primary" className="rounded-xl px-8 py-6 h-auto shadow-glow flex items-center gap-3">
-                <Lock className="size-4" /> Entrar na plataforma <ArrowRight className="size-4" />
-              </LinkButton>
-            </div>
           </div>
 
           {/* Pedestal with LA Logo */}
@@ -38,10 +33,10 @@ export default async function DashboardPage() {
             {/* Glow */}
             <div className="absolute bottom-10 size-32 bg-brand-primary/40 blur-[50px] rounded-full animate-pulse" />
             
-            {/* 3D LA Card */}
-            <div className="relative size-32 sm:size-40 bg-gradient-to-br from-brand-card to-brand-background border border-white/10 rounded-2xl flex items-center justify-center shadow-halo transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-              <span className="text-4xl sm:text-5xl font-bold text-white tracking-tighter">LA</span>
-              <div className="absolute inset-0 bg-mesh opacity-30 rounded-2xl" />
+            {/* 3D Logo Card */}
+            <div className="relative size-32 sm:size-40 bg-brand-card border border-white/10 rounded-2xl flex items-center justify-center shadow-halo transform -rotate-3 hover:rotate-0 transition-transform duration-500 overflow-hidden">
+              <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-brand-primary/5 mix-blend-overlay" />
             </div>
           </div>
         </section>

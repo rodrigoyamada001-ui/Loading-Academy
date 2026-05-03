@@ -22,7 +22,7 @@ import { LASquare } from "./landing/Logo";
 export function AppShell({ children, profile }: { children: React.ReactNode; profile: Profile }) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const canAdmin = profile.role === "leader" || profile.role === "admin";
+  const canAdmin = profile.role === "admin";
 
   const navItems = [
     { label: "Início", icon: Home, href: "/dashboard" },
@@ -78,7 +78,7 @@ export function AppShell({ children, profile }: { children: React.ReactNode; pro
                 </div>
                 <div>
                   <p className="text-[10px] font-bold text-white uppercase tracking-wider">Acesso administrativo</p>
-                  <p className="text-[8px] text-brand-muted">Área restrita para líderes</p>
+                  <p className="text-[8px] text-brand-muted">Área restrita para administradores</p>
                 </div>
               </div>
               <ChevronRight className="size-4 text-brand-muted group-hover:text-brand-primary transition-all" />

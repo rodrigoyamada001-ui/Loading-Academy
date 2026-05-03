@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight, Book, Crown, Users, Heart } from "lucide-react";
+import Image from "next/image";
 
 const courses = [
   {
@@ -51,7 +52,13 @@ export function Courses() {
           {courses.map((course) => (
             <div key={course.id} className="group relative bg-brand-card rounded-2xl border border-white/5 overflow-hidden hover:border-brand-primary/30 transition-all shadow-halo">
               <div className="aspect-video w-full overflow-hidden">
-                <img src={course.image} alt={course.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-60" />
+                <Image
+                  src={course.image}
+                  alt={course.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-60"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/40 to-transparent" />
               </div>
               

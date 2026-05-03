@@ -1,4 +1,5 @@
 import { Trophy, Flame, Star } from "lucide-react";
+import Link from "next/link";
 
 export function Progress() {
   return (
@@ -41,14 +42,14 @@ export function Progress() {
                 <p className="text-[10px] uppercase tracking-widest text-brand-muted font-bold mb-3">Último acesso</p>
                 <h3 className="text-xl font-bold text-white mb-2">Lição 03</h3>
                 <p className="text-sm text-brand-muted mb-4">Chamado e Propósito</p>
-                <button className="text-xs font-bold text-brand-primary hover:underline">Continuar lendo →</button>
+                <Link href="/courses" className="text-xs font-bold text-brand-primary hover:underline">Continuar lendo →</Link>
               </div>
               
               <div>
                 <p className="text-[10px] uppercase tracking-widest text-brand-muted font-bold mb-3">Próxima etapa</p>
                 <h3 className="text-xl font-bold text-white mb-2">Lição 04</h3>
                 <p className="text-sm text-brand-muted mb-4">Propósito e Destino</p>
-                <button className="text-xs font-bold text-brand-primary hover:underline">Continuar jornada →</button>
+                <Link href="/courses" className="text-xs font-bold text-brand-primary hover:underline">Continuar jornada →</Link>
               </div>
             </div>
 
@@ -61,7 +62,7 @@ export function Progress() {
                   </div>
                 ))}
               </div>
-              <button className="text-xs font-bold text-brand-muted hover:text-white transition-colors">Ver todas →</button>
+              <Link href="/dashboard" className="text-xs font-bold text-brand-muted hover:text-white transition-colors">Ver todas →</Link>
             </div>
           </div>
         </div>

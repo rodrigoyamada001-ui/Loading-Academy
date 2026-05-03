@@ -46,7 +46,6 @@ export default async function AdminUsersPage() {
                 <input type="hidden" name="id" value={user.id} />
                 <Select label="Role" name="role" defaultValue={user.role}>
                   <option value="member">Membro</option>
-                  <option value="leader">Lider</option>
                   <option value="admin">Admin</option>
                 </Select>
                 <Button className="self-end" type="submit" variant="accent" disabled={profile.role !== "admin"}>Promover</Button>

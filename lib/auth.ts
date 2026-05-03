@@ -34,7 +34,7 @@ export async function requireApprovedUser() {
   return profile;
 }
 
-export async function requireAdminRole(roles: ProfileRole[] = ["leader", "admin"]) {
+export async function requireAdminRole(roles: ProfileRole[] = ["admin"]) {
   const profile = await requireUser();
   if (!roles.includes(profile.role)) redirect("/dashboard");
   return profile;

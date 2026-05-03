@@ -45,8 +45,10 @@ export function Hero() {
             <div className="absolute inset-0 bg-brand-card rounded-3xl border border-white/5 shadow-halo overflow-hidden flex items-center justify-center">
               <div className="absolute inset-0 bg-mesh opacity-20" />
               <div className="text-center p-8 relative z-10">
-                <div className="size-20 rounded-2xl bg-brand-primary/20 border border-brand-primary/30 flex items-center justify-center mx-auto mb-6">
-                  <span className="text-3xl font-bold text-brand-primary">LA</span>
+                {/* 3D Logo Card */}
+                <div className="relative size-32 sm:size-40 bg-brand-card border border-white/10 rounded-2xl flex items-center justify-center shadow-halo transform -rotate-3 hover:rotate-0 transition-transform duration-500 overflow-hidden mx-auto mb-6">
+                  <img src="/logo.jpg" alt="Logo" className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-brand-primary/5 mix-blend-overlay" />
                 </div>
                 <h3 className="text-2xl font-display text-white mb-2">Plataforma Exclusiva</h3>
                 <p className="text-sm text-brand-muted">Acesse seus conteúdos ministerial com segurança e organização.</p>

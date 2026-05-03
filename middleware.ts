@@ -49,7 +49,7 @@ export async function middleware(request: NextRequest) {
 
   if (user && pathname.startsWith("/admin")) {
     const { data: profile } = await supabase.from("profiles").select("role").eq("id", user.id).single();
-    if (!profile || !["leader", "admin"].includes(profile.role)) {
+    if (!profile || profile.role !== "admin") {
       const url = request.nextUrl.clone();
       url.pathname = "/dashboard";
       return NextResponse.redirect(url);

@@ -18,7 +18,7 @@ async function uploadFile(bucket: string, file: File | null, folder: string) {
 }
 
 export async function updateUserStatus(formData: FormData) {
-  await requireAdminRole(["leader", "admin"]);
+  await requireAdminRole(["admin"]);
   const supabase = await createClient();
   await supabase
     .from("profiles")

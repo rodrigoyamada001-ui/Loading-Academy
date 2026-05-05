@@ -1,7 +1,6 @@
 import { AdminNav } from "@/components/admin-nav";
 import { AppShell } from "@/components/shell";
-import { Button } from "@/components/ui/button";
-import { Select } from "@/components/ui/field";
+import { SubmitButton } from "@/components/ui/submit-button";
 import { updateUserRole, updateUserStatus } from "@/lib/actions/admin";
 import { requireAdminRole } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
@@ -56,7 +55,7 @@ export default async function AdminUsersPage() {
                   <option value="approved">Aprovado</option>
                   <option value="rejected">Rejeitado</option>
                 </select>
-                <Button className="h-10 px-4 rounded-xl text-xs font-bold" type="submit" variant="secondary">Salvar</Button>
+                <SubmitButton className="h-10 px-4 rounded-xl text-xs font-bold" variant="secondary">Salvar</SubmitButton>
               </form>
               <form action={updateUserRole} className="flex items-center gap-2">
                 <input type="hidden" name="id" value={user.id} />
@@ -68,7 +67,7 @@ export default async function AdminUsersPage() {
                   <option value="member">Membro</option>
                   <option value="admin">Admin</option>
                 </select>
-                <Button className="h-10 px-4 rounded-xl text-xs font-bold" type="submit" variant="primary" disabled={profile.role !== "admin"}>Promover</Button>
+                <SubmitButton className="h-10 px-4 rounded-xl text-xs font-bold" variant="primary" disabled={profile.role !== "admin"}>Promover</SubmitButton>
               </form>
             </div>
           </div>

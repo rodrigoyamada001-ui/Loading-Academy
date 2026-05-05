@@ -15,12 +15,21 @@ export default async function DashboardPage() {
         {/* Hero Section Dashboard */}
         <section className="relative flex flex-col lg:flex-row items-center justify-between gap-12 py-10">
           <div className="max-w-xl text-center lg:text-left z-10">
+            {!approved && (
+              <div className="mb-6 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-yellow-500/10 border border-yellow-500/20 text-yellow-400">
+                <Shield className="size-4" />
+                <span className="text-xs font-bold uppercase tracking-wider">Aguardando aprovação</span>
+              </div>
+            )}
             <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
               Bem-vindo(a) à <br />
               <span className="text-brand-primary">Loading Academy</span>
             </h1>
             <p className="text-brand-muted text-lg leading-relaxed mb-8">
-              Este é o seu ambiente de formação. Seus cursos aparecerão aqui quando forem liberados pela liderança.
+              {approved 
+                ? "Este é o seu ambiente de formação. Seus cursos e progresso aparecem aqui."
+                : "Sua conta foi criada com sucesso! Assim que a liderança aprovar seu acesso, seus cursos aparecerão aqui."
+              }
             </p>
           </div>
 

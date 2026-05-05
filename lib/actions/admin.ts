@@ -20,21 +20,35 @@ async function uploadFile(bucket: string, file: File | null, folder: string) {
 export async function updateUserStatus(formData: FormData) {
   await requireAdminRole(["admin"]);
   const supabase = await createClient();
-  await supabase
+  const id = String(formData.get("id"));
+  const status = String(formData.get("status")) as ProfileStatus;
+
+  const { error } = await supabase
     .from("profiles")
-    .update({ status: String(formData.get("status")) as ProfileStatus })
-    .eq("id", String(formData.get("id")));
+    .update({ status })
+    .eq("id", id);
+
+  if (error) throw new Error(`Falha ao atualizar status: ${error.message}`);
+  
   revalidatePath("/admin/users");
+  revalidatePath("/dashboard");
 }
 
 export async function updateUserRole(formData: FormData) {
   await requireAdminRole(["admin"]);
   const supabase = await createClient();
-  await supabase
+  const id = String(formData.get("id"));
+  const role = String(formData.get("role")) as ProfileRole;
+
+  const { error } = await supabase
     .from("profiles")
-    .update({ role: String(formData.get("role")) as ProfileRole })
-    .eq("id", String(formData.get("id")));
+    .update({ role })
+    .eq("id", id);
+
+  if (error) throw new Error(`Falha ao atualizar cargo: ${error.message}`);
+
   revalidatePath("/admin/users");
+  revalidatePath("/dashboard");
 }
 
 export async function createCourse(formData: FormData) {
